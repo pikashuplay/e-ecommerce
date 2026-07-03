@@ -56,4 +56,4 @@ O Angular CLI não inclui, por padrão, um framework para testes de ponta a pont
 
 ## Recursos adicionais
 
-Para obter mais informações sobre o uso do Angular CLI, incluindo referências detalhadas dos comandos, visite a página [Visão Geral e Referência de Comandos do Angular CLI](https://angular.dev/tools/cli) page.
+Para obter mais informações sobre o uso do Angular CLI, incluindo referências detalhadas dos comandos, visite a página [Visão Geral e Referência de Comandos do Angular CLI](https://angular.dev/tools/cli).
