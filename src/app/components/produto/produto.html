@@ -1,13 +1,4 @@
-<!-- Cria uma div paran exibir a informação do produto-->
-<!--<div>
-    <h3>Produto: {{ produto }}</h3>
-    <p>Preço: {{ preco }}</p>
-</div> -->
-<div>
-    @if (mostraeProduto){
-        <h3>Produto: {{ produto }}</h3>
-    }
-    @if (mostrarPreco){
-        <p>Preço: R$ {{ preco }}</p>
-    }
+<div class="produto">
+<h3>{{ nome | uppercase}}</h3>
+<P>{{ preco | precoFormatado}}</P>
 </div>
