@@ -1,0 +1,9 @@
+<div class="produto">
+<h3>{{ nome | uppercase}}</h3>
+<P>{{ preco | precoFormatado}}</P>
+
+<button (click)="selecionarProduto()">
+    Selecionar {{ nome }}
+</button>
+
+</div>
