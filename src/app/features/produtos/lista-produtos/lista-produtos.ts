@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Produto } from '../produto/produto';
 @Component({
   selector: 'app-lista-produtos',
@@ -7,7 +7,7 @@ import { Produto } from '../produto/produto';
   styleUrl: './lista-produtos.css',
 })
 export class ListaProdutos {
-  produtos = [
+  produtos = signal([
     {
       nome: 'Teclado Gamer', 
     preco:59.99
@@ -28,8 +28,14 @@ export class ListaProdutos {
       nome: 'Headset Gamer', 
     preco: 466.99
   }
-  ];
+  ]);
   exibirProduto (nome: string){
     console.log ('Produto Selecionado: ', nome);
   }
+  adicionarProduto(){
+    this.produtos.update(listaAtual =>[
+      ...listaAtual, {nome: 'Sony Playstation 5', preco:20000}
+    ]);
+  }
 }
+//chore no signal
