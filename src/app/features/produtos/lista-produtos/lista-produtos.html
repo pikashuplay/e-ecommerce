@@ -7,4 +7,8 @@
 }
 <p><button (click)="adicionarProduto()">adiciona Produto
 </button></p>
-<!--adionei um novo buton ou modifiquei, fiz a nova função trabalhar-->
+<h2>Total de produtos: {{totalProdutos()}}</h2>
+<h3>Valor total:{{valorTotal() | precoFormatado}}</h3>
+<p><button (click)="substituirprodutos()">Substituir Produtos
+</button></p>
+<!-- adicionado o total produtos, para exibir a quantidade de itens e aumentar a quantidade de produtos-->
