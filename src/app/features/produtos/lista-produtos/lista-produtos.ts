@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { Produto } from '../produto/produto';
 import { computed } from '@angular/core';
 import { PrecoFormatadoPipe } from '../../../shared/pipes/preco-formatado-pipe';
+import { effect } from '@angular/core';
 @Component({
   selector: 'app-lista-produtos',
   imports: [Produto, PrecoFormatadoPipe],
@@ -33,6 +34,7 @@ export class ListaProdutos {
   ]);
   exibirProduto (nome: string){
     console.log ('Produto Selecionado: ', nome);
+    this.produtoSelecionado.set(nome);
   }
   adicionarProduto(){
     this.produtos.update(listaAtual =>[
@@ -48,6 +50,18 @@ export class ListaProdutos {
       {nome: 'Arroz Fazenda', preco: 200},
     ]);
   }
+  constructor(){
+    effect(() => {console.log('Lista de Produtos Alterado', this.produtos());
+     });
+     effect(() => {console.log('Valor total atualizado:', this.valorTotal());
+     });
+     effect(() => {if (typeof document !== 'undefined') {
+        document.title = `(${this.totalProdutos()}) Minha Loja`;
+     }
+     });
+    }
+    produtoSelecionado = signal<string | null> (null);
+
 }
 //criamos uma totalprodutos para calcular o total de produtos
 //adicionado valortotal para somar todos os valores da lista que forem adicionados
