@@ -3,9 +3,10 @@ import { Produto } from '../produto/produto';
 import { computed } from '@angular/core';
 import { PrecoFormatadoPipe } from '../../../shared/pipes/preco-formatado-pipe';
 import { effect } from '@angular/core';
+import { UpperCasePipe } from '@angular/common';
 @Component({
   selector: 'app-lista-produtos',
-  imports: [Produto, PrecoFormatadoPipe],
+  imports: [Produto, PrecoFormatadoPipe, UpperCasePipe],
   templateUrl: './lista-produtos.html',
   styleUrl: './lista-produtos.css',
 })
@@ -13,23 +14,23 @@ export class ListaProdutos {
   produtos = signal([
     {
       nome: 'Teclado Gamer', 
-    preco:59.99
+    preco: 149.00
   },
     {
       nome: 'Mouse Gamer', 
-    preco:59.99
+    preco: 299.99
   },
     {
       nome: 'Monitor Gamer', 
-    preco:369.99
+    preco: 1599.99
   },
     {
       nome: 'Desktop Gamer', 
-    preco:1200.99
+    preco : 4999.99
   },
     {
       nome: 'Headset Gamer', 
-    preco: 466.99
+    preco: 699.99
   }
   ]);
   exibirProduto (nome: string){
@@ -38,7 +39,7 @@ export class ListaProdutos {
   }
   adicionarProduto(){
     this.produtos.update(listaAtual =>[
-      ...listaAtual, {nome: 'Sony Playstation 5', preco:20000}
+      ...listaAtual, {nome: 'Processador Intel core i5 14550fs', preco:2500 }
     ]);
   }
   totalProdutos = computed(() => this.produtos().length);
@@ -47,7 +48,11 @@ export class ListaProdutos {
   
   substituirprodutos (){
     this.produtos.set([
-      {nome: 'Arroz Fazenda', preco: 200},
+      {nome: 'Teclado', preco: 40},
+       {nome: 'Mouse', preco: 10},
+        {nome: 'Monitor', preco: 100},
+          {nome: 'Desktop', preco: 500},
+            {nome: 'Headset', preco: 25},
     ]);
   }
   constructor(){
@@ -62,6 +67,19 @@ export class ListaProdutos {
     }
     produtoSelecionado = signal<string | null> (null);
 
-}
+    carrinho = signal<{ nome: string; preco: number}[]>([]);
+
+    adicionarAoCarrinho (produto: { nome:string; preco: number}){
+
+      this.carrinho.update(listaAtual =>
+
+        [...listaAtual,produto
+      ]);}
+      quantidadeCarrinho = computed(() => this.carrinho().length)
+      totalCarrinho = computed(() => {
+        return this.carrinho().reduce((total, item) =>
+        total + item.preco,0);
+      });
+    }
 //criamos uma totalprodutos para calcular o total de produtos
 //adicionado valortotal para somar todos os valores da lista que forem adicionados
