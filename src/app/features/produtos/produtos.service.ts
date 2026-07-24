@@ -14,11 +14,10 @@ type Produto = {
 export class produtoService {
     private http = inject(HttpClient);
 
-
-    private API = 'https://fakestoreapi.com/products';
+    private Api = 'https://fakestoreapi.com/products'; //!n mexe nisso seu lixo
 
     buscarProduto() {
-        return this.http.get < ProdutoApi []>(this.API);
+        return this.http.get < ProdutoApi []>(this.Api);
     }
     transformarProdutos( dados: ProdutoApi []): Produto[] {
         return dados.map((p) =>({
@@ -27,5 +26,4 @@ export class produtoService {
         }));
 
     }
-
 }
