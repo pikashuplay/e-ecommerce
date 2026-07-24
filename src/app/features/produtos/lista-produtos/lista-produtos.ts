@@ -4,6 +4,8 @@ import { computed } from '@angular/core';
 import { PrecoFormatadoPipe } from '../../../shared/pipes/preco-formatado-pipe';
 import { effect } from '@angular/core';
 import { UpperCasePipe } from '@angular/common';
+import { inject } from '@angular/core';
+import { produtoService } from '../produtos.service';
 @Component({
   selector: 'app-lista-produtos',
   imports: [Produto, PrecoFormatadoPipe, UpperCasePipe],
@@ -11,28 +13,32 @@ import { UpperCasePipe } from '@angular/common';
   styleUrl: './lista-produtos.css',
 })
 export class ListaProdutos {
-  produtos = signal([
-    {
-      nome: 'Teclado Gamer', 
-    preco: 149.00
-  },
-    {
-      nome: 'Mouse Gamer', 
-    preco: 299.99
-  },
-    {
-      nome: 'Monitor Gamer', 
-    preco: 1599.99
-  },
-    {
-      nome: 'Desktop Gamer', 
-    preco : 4999.99
-  },
-    {
-      nome: 'Headset Gamer', 
-    preco: 699.99
+
+  //!remover a lista de produtos, dados carregados via API Fakestoreapi
+  produtos = signal <{ nome: string; preco: number}[]>([]);
+  //? criar estado de carregamento, 
+  // **true: requisição em andamento, exibir dados no templete
+  //! false: esconder indicador e exibir a lista de produtos
+  carregando = signal(true);
+
+  //!criar o metodo para requisição dos produtos
+  carregarProdutos(){
+
+    this.carregando.set(true);
+
+    this.produtoService.buscarProduto().subscribe({
+          next: (dados) => {
+            const produtos = this.produtoService.transformarProdutos(dados);
+            this.produtos.set(produtos);
+            this.carregando.set(false);
+          },
+          error: (erro) => {
+            console.error('Erro ao carregar os produtos:, ', erro);
+            this.carregando.set(false);
+          },
+    });
   }
-  ]);
+
   exibirProduto (nome: string){
     console.log ('Produto Selecionado: ', nome);
     this.produtoSelecionado.set(nome);
@@ -56,6 +62,8 @@ export class ListaProdutos {
     ]);
   }
   constructor(){
+      //? =============== método http (api) foi modificado (produtoService)
+    this.carregarProdutos();
     effect(() => {console.log('Lista de Produtos Alterado', this.produtos());
      });
      effect(() => {console.log('Valor total atualizado:', this.valorTotal());
@@ -75,6 +83,12 @@ export class ListaProdutos {
 
         [...listaAtual,produto
       ]);}
+
+
+       //? ============ INJECT ============
+      private produtoService = inject (produtoService);
+
+
       quantidadeCarrinho = computed(() => this.carrinho().length)
       totalCarrinho = computed(() => {
         return this.carrinho().reduce((total, item) =>
