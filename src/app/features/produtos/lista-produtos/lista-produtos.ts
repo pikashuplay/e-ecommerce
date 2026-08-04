@@ -6,9 +6,11 @@ import { effect } from '@angular/core';
 import { UpperCasePipe } from '@angular/common';
 import { inject } from '@angular/core';
 import { produtoService } from '../produtos.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 @Component({
   selector: 'app-lista-produtos',
-  imports: [Produto, PrecoFormatadoPipe, UpperCasePipe],
+  imports: [ PrecoFormatadoPipe, UpperCasePipe, MatButtonModule, Produto, MatCardModule],
   templateUrl: './lista-produtos.html',
   styleUrl: './lista-produtos.css',
 })
