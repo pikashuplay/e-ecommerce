@@ -2,9 +2,10 @@ import { Component,Input,Output, EventEmitter } from '@angular/core';
 import { UpperCasePipe, CurrencyPipe } from '@angular/common';
 import { PrecoFormatadoPipe } from '../../../shared/pipes/preco-formatado-pipe';
 import { MatButton } from '@angular/material/button';
+import { MatCard, MatCardContent, MatCardHeader, MatCardActions, MatCardTitle} from "@angular/material/card";
 @Component({
   selector: 'app-produto',
-  imports: [UpperCasePipe, PrecoFormatadoPipe, MatButton],
+  imports: [UpperCasePipe, PrecoFormatadoPipe, MatButton, MatCard, MatCardTitle, MatCardContent, MatCardHeader, MatCardActions],
   templateUrl: './produto.html',
   styleUrl: './produto.css',
 })
