@@ -14,17 +14,20 @@
        @if(!carregando() && !erro()){
         <p>Total de Produtos: {{ totalProdutos() }}</p>
          <hr>
-    @for(item of produtos(); track $index){
-        <app-produto
-            [nome] = "item.nome"
-            [preco] = "item.preco"
-            (produtoSelecionado)="exibirProduto($event)"
-            
-            (produtoAdicionado)="adicionarAoCarrinho($event)"
-        >
-        </app-produto>
-        <!-- <button (click)="adicionarAoCarrinho(item)">Adicionar ao carrinho</button> -->
- }
+         <section class="grid-produtos">
+
+           @for(item of produtos(); track $index){
+               <app-produto
+                   [nome] = "item.nome"
+                   [preco] = "item.preco"
+                   (produtoSelecionado)="exibirProduto($event)"
+                   
+                   (produtoAdicionado)="adicionarAoCarrinho($event)"
+               >
+               </app-produto>
+               <!-- <button (click)="adicionarAoCarrinho(item)">Adicionar ao carrinho</button> -->
+        }
+         </section>
     }   
 <hr>
 <h2>carrinho</h2>
