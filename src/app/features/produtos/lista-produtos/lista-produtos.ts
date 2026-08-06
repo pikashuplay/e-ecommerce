@@ -5,9 +5,12 @@ import { PrecoFormatadoPipe } from '../../../shared/pipes/preco-formatado-pipe';
 import { effect } from '@angular/core';
 import { UpperCasePipe } from '@angular/common';
 import { inject } from '@angular/core';
-import { produtoService } from '../produtos.service';
+import { produtoService } from '../../../core/services/produtos.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { CarrinhoService } from '../../../core/services/carrinho.service';
+
+
 @Component({
   selector: 'app-lista-produtos',
   imports: [ PrecoFormatadoPipe, UpperCasePipe, MatButtonModule, Produto, MatCardModule],
@@ -79,27 +82,23 @@ export class ListaProdutos {
     }
     produtoSelecionado = signal<string | null> (null);
 
-    carrinho = signal<{ nome: string; preco: number}[]>([]);
-    
+    carrinho = signal <{nome: string; preco: number }[]>([]);
+
     erro = signal <string | null > (null);
 
     adicionarAoCarrinho (produto: { nome:string; preco: number}){
 
-      this.carrinho.update(listaAtual =>
-
-        [...listaAtual,produto
-      ]);}
-
-
-       //? ============ INJECT ============
-      private produtoService = inject (produtoService);
-
-
-      quantidadeCarrinho = computed(() => this.carrinho().length)
-      totalCarrinho = computed(() => {
-        return this.carrinho().reduce((total, item) =>
-        total + item.preco,0);
-      });
+      this.carrinhoService.adicionar(produto)
     }
+    
+    
+    //? ============ INJECT ============
+    private produtoService = inject (produtoService);
+    public carrinhoService = inject (CarrinhoService);
+
+
+    quantidadeCarrinho = this.carrinhoService.quantidadeItens;
+    totalCarrinho = this.carrinhoService.totalItens;
+  }
 //criamos uma totalprodutos para calcular o total de produtos
 //adicionado valortotal para somar todos os valores da lista que forem adicionados
