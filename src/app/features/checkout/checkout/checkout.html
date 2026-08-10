@@ -32,7 +32,7 @@
 
     <p><input type="email" formControlName = "email" placeholder = "E-mail"></p>
     @if (formulario.get('email')?.touched && formulario.get('email')?.invalid) {
-        @if (formulario.get('email')?.errors?.['riquired']) {
+        @if (formulario.get('email')?.errors?.['required']) {
             <br>
             <small style="color: red;">E-mail é Obrigatório</small>
         }
@@ -48,7 +48,7 @@
 
     <p><input type="text" formControlName = "endereco" placeholder = "Endereço"></p>
     @if (formulario.get('endereco')?.touched && formulario.get('endereco')?.invalid) {
-        @if (formulario.get('endereco')?.errors?.['riquered']) {
+        @if (formulario.get('endereco')?.errors?.['requered']) {
             <br>
             <small style="color: red;">Endereço é Obrigatório</small>
         }
