@@ -1,22 +1,6 @@
-<!-- Cabeçalho: nome da Loja criado com variavel {{nomeLoja}}-->
- <!-- Para alterar o nome da loja Localizar na class App variável nomeLoja-->
-<!-- barra de navegação, adicionar-->
- <!--  -->
-<!-- <nav>
-    <a routerLink="/">Home</a> |
-    <a routerLink="/produtos">Produtos</a> |
-    <a routerLink="/carrinho">Carrinho</a>
-</nav> -->
 <app-header></app-header>
 <!-- Controle de autenticação -->
  <main class ="container-principal">
-
-    <section class ="bloco-controle">
-        <button mat-raised-button (click)="login()">Login</button>
-        <button mat-stroked-button (click)="logout()">Logout</button>
-        <p>Status: {{usuarioLogado() ? 'Logado' : 'Deslogado'}}</p>
-    </section>
-
 <router-outlet></router-outlet>
  </main>
 
