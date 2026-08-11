@@ -1,6 +1,5 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet, RouterLink} from '@angular/router';
-import { usuarioLogado, login, logout } from './core/auth';
 import { Header } from './shared/layout/header/header';
 import { MatAnchor } from '@angular/material/button';
 @Component({
@@ -12,7 +11,5 @@ import { MatAnchor } from '@angular/material/button';
 export class App {
   protected readonly title = signal('e-ecommerce');
   // nomeLoja = 'mead in china'; //nome do e-ecommerce
-  usuarioLogado = usuarioLogado;
-  login = login;
-  logout = logout;
+  
 }
