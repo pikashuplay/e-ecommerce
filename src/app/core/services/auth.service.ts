@@ -8,7 +8,7 @@ type PerfilUsuario = 'admin' | 'usuario';
 type Usuario = {
     email: string;
     perfil: PerfilUsuario;
-}
+};
 
 @Injectable({
     providedIn: 'root'
@@ -56,7 +56,4 @@ logout (){
 obterToken(): string | null{
     return this.tokenJwt();
 }
-
-
-
 }
