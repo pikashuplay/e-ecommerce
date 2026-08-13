@@ -16,13 +16,13 @@ export class Header {
   nomeLoja = 'mead in china';
 
   private carrinhoService = inject(CarrinhoService);
+  private authService = inject(AuthService);
+  private router = inject(Router);
+
   quantidade = this.carrinhoService.quantidadeItens;
-  
-  private authService = inject(AuthService)
   usuarioLogado = this.authService.usuarioLogado;
   usuarioAtual = this.authService.usuarioAtual;
 
-  private router = inject(Router);
 
   sair(){
     this.authService.logout();

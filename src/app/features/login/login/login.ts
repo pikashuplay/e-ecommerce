@@ -43,6 +43,6 @@ export class Login {
       return;
     }
 
-    this.router.navigateByUrl('/perodutos')
+    this.router.navigateByUrl('/produtos');
   }
 }

@@ -9,7 +9,7 @@ export const adminGuard: CanActivateFn = () => {
 
     //! 1 verificar se o usuario esta logado
     if(!authService.usuarioLogado()) {
-        return router.createUrlTree(['/login']);
+        return router.createUrlTree(['/login'])
     }
     //! 2 verificar se o usuario atual (Logado), se ele tem perfil adm
     if (!authService.Admin()) {
