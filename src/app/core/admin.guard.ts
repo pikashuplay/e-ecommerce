@@ -8,14 +8,14 @@ export const adminGuard: CanActivateFn = () => {
     const authService = inject(AuthService)
 
     //! 1 verificar se o usuario esta logado
-    if(!authService.usuarioLogado()) {
+    if(!authService.estaLogado()) {
         return router.createUrlTree(['/login'])
     }
     //! 2 verificar se o usuario atual (Logado), se ele tem perfil adm
-    if (!authService.Admin()) {
+    if(!authService.Admin()) {
         return router.createUrlTree(['/acesso-negado'])
     }
     //! 3 se o usuario estiver logado e for adm = ACESSO LIBERADO
 
     return true;
-};
+}
