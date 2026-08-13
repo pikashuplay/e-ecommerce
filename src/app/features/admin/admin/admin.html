@@ -1,3 +1,54 @@
-<h2>Área Administrativa</h2>
-<!-- !Esta pagina representa uma area restrita de aplicações -->
-<!-- ! Somente usuarios com perfil de administrador deve conseguir acessar esta rota-->
+<section class="painel-admin">
+
+    <h2> Área Administrativa </h2>
+
+    <hr>
+
+    <section class="bloco-admin">
+        <h3> Usuário Autenticado </h3>
+        @if(usuarioAtual()){
+            <p><strong> E-mail: </strong> {{usuarioAtual()?.email }}</p>
+            <p><strong> Perfil: </strong>{{usuarioAtual()?.perfil }}</p>
+            <p> {{mensagemPerfil()}}</p>
+        }
+    </section>
+
+    <hr>
+
+    <section class="card-admin">
+        <article>
+            <h3> Produtos Cadastrados </h3>
+            <p>{{totalProdutosCadastrados()}}</p>
+        </article>
+
+        <article>
+            <h3> Produtos Pendentes </h3>
+            <p> {{pedidosPendentes()}}</p>
+        </article>
+
+        <article>
+            <h3> Usuários Cadastrados </h3>
+            <p> {{usuariosCadastrados()}}</p>
+        </article>
+
+    </section>
+
+    <hr>
+
+    <section class="bloco-admin">
+
+        <h3> Ações Administrativas </h3>
+        <p>
+            Nessa etapa as ações ainda são representativas
+            nas proximas evoluções (etapas), podem ser conectadas via API reais.
+        </p>
+        <button type="button"> Cadastrar Produto</button>
+        <button type="button"> Gerenciar Usuário</button>
+        <button type="button"> Gerenciar Produtos</button>
+
+    </section>
+
+    <hr>
+    <button type="button" (click)="sair()"> Sair </button>
+    
+</section>
