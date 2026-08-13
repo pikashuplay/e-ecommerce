@@ -2,6 +2,7 @@
 import { Routes } from "@angular/router";
 import { authGuard } from "./core/auth.guard";
 import { Checkout } from "./features/checkout/checkout/checkout";
+import { adminGuard } from "./core/admin.guard";
 export const routes: Routes = [
     {
         path:'',
@@ -23,8 +24,14 @@ export const routes: Routes = [
     },
     {
         path:'admin',
-        canActivate: [authGuard],
-        loadComponent: () => import('./features/admin/admin/admin').then((m) => m.Admin),
+        canActivate: [adminGuard],
+        loadComponent: () => 
+            import('./features/admin/admin/admin').then((m) => m.Admin),
+    },
+    {
+        path:'acesso-negado',
+        loadComponent: () => 
+            import('./features/acesso-negado/acesso-negado/acesso-negado').then((m) => m.AcessoNegado),
     },
     {
         path: 'checkout',
