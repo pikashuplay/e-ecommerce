@@ -22,7 +22,7 @@ export const routes: Routes = [
             import('./features/carrinho/carrinho/carrinho').then((m) => m.Carrinho),
     },
     {
-        path:'rota',
+        path:'admin',
         canActivate: [authGuard],
         loadComponent: () => import('./features/admin/admin/admin').then((m) => m.Admin),
     },
