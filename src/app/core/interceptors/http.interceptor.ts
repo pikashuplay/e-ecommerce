@@ -4,7 +4,7 @@ import { tap } from "rxjs";
 import { catchError } from "rxjs";
 import { throwError } from "rxjs";
 import { inject, Inject } from "@angular/core";
-import { AuthService } from "../services/auth.service";
+import { AuthFacade } from "../facades/auth.facade";
 import { Router } from "@angular/router";
 
 
@@ -12,11 +12,11 @@ import { Router } from "@angular/router";
 export const httpInterceptor: HttpInterceptorFn = (req, next) => {
 
     
-    const authService = inject(AuthService);
+    const authFacade = inject(AuthFacade);
     const router = inject(Router);
 
     //!NOVO METODO TOKEN
-    const token = authService.obterToken();
+    const token = authFacade.obterToken();
     //! requisição de log 
     console.log('Requisição: ', req.url); 
     //!token
@@ -42,7 +42,7 @@ export const httpInterceptor: HttpInterceptorFn = (req, next) => {
 
             if (error.status === 401){
                 console.warn('Não Autorizado!');
-                authService.logout();
+                authFacade.usuarioLogado();
                 router.navigateByUrl('/login');
             }
             if (error.status === 403) {
