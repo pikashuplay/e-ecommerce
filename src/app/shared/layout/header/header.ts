@@ -3,8 +3,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink,Router } from '@angular/router';
-import { CarrinhoService } from '../../../core/services/carrinho.service';
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthFacade } from '../../../core/facades/auth.facade';
+import { CarrinhoFacade } from '../../../core/facades/carrinho.facade';
 
 @Component({
   selector: 'app-header',
@@ -15,17 +15,17 @@ import { AuthService } from '../../../core/services/auth.service';
 export class Header {
   nomeLoja = 'mundo 1 real';
 
-  private carrinhoService = inject(CarrinhoService);
-  private authService = inject(AuthService);
+  private carrinhoFacade = inject(CarrinhoFacade);
+  private authFacade = inject(AuthFacade);
   private router = inject(Router);
 
-  quantidade = this.carrinhoService.quantidadeItens;
-  usuarioLogado = this.authService.usuarioLogado;
-  usuarioAtual = this.authService.usuarioAtual;
+  quantidade = this.carrinhoFacade.quantidadeCarrinho;
+  usuarioLogado = this.authFacade.usuarioLogado;
+  usuarioAtual = this.authFacade.usuarioAtual;
 
 
   sair(){
-    this.authService.logout();
+    this.authFacade.sair();
     this.router.navigateByUrl('/login');
   }
 }
