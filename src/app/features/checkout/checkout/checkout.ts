@@ -12,10 +12,11 @@ import { RouterLink } from "@angular/router";
 import { Router } from '@angular/router';
 import { AuthFacade } from '../../../core/facades/auth.facade';
 import { PrecoFormatadoPipe } from '../../../shared/pipes/preco-formatado-pipe';
+import { MatAnchor } from "@angular/material/button";
 
 @Component({
   selector: 'app-checkout',
-  imports: [ReactiveFormsModule, RouterLink, PrecoFormatadoPipe],
+  imports: [ReactiveFormsModule, RouterLink, PrecoFormatadoPipe, MatAnchor],
   templateUrl: './checkout.html',
   styleUrl: './checkout.css',
 })
