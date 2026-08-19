@@ -1,20 +1,20 @@
 <h2>Checkout</h2>
 @if (compraFinalizada()) {
     <p style="color: green;">Compra finalizada com sucesso. ​👺​</p>
-    <button type="button" routerLink="/produtos">voltar para produtos</button>
-    <button type="button" (click)="sair()">Sair</button>
+    <button mat-button type="button" routerLink="/produtos">voltar para produtos</button>
+    <button mat-button type="button" (click)="sair()">Sair</button>
 }
 
 
 @if (carrinhoFacade.carrinhoVazio()) {
     <p style="color: red;">Seu carrinho está vazio. Adicione um produto antes de finalizar a compra.</p>
-    <button type="button" routerLink="/produtos">Ver produtos</button>
+    <button mat-button type="button" routerLink="/produtos">Ver produtos</button>
 }@else if (!compraFinalizada()){
     <section>
         <h3>Resumo do pedido</h3>
         <P><strong>Itens no Carrinho: </strong>{{carrinhoFacade.quantidadeCarrinho()}}</P>
         <P><strong>Total: </strong>{{carrinhoFacade.totalCarrinho() | precoFormatado}}</P>
-        <button type="button" routerLink="/carrinho">Revisar Carrinho</button>
+        <button mat-button type="button" routerLink="/carrinho">Revisar Carrinho</button>
     </section>
 }
 <form [formGroup]="formulario">
@@ -62,5 +62,5 @@
     }
 
 
-    <button type="button" (click)="finalizar()" [disabled]="formulario.invalid">Finalizar compra</button>
+    <button mat-button type="button" (click)="finalizar()" [disabled]="formulario.invalid">Finalizar compra</button>
 </form>
