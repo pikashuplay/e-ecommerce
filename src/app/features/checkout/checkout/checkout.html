@@ -1,22 +1,33 @@
 <h2>Checkout</h2>
-@if (compraFinalizada()) {
-    <p style="color: green;">Compra finalizada com sucesso. ​👺​</p>
-    <button mat-button type="button" routerLink="/produtos">voltar para produtos</button>
-    <button mat-button type="button" (click)="sair()">Sair</button>
+@if (pedidoFinalizado()) {
+   <section class="compra-finalizada">
+    <h3>COMPRA FINALIZADA COM SUCESSO. </h3>
+    <p><strong>Código: </strong>{{pedidoFinalizado()?.codigo}}</p>
+    <p><strong>Cliente: </strong>{{pedidoFinalizado()?.cliente}}</p>
+    <p><strong>Quantidade: </strong>{{pedidoFinalizado()?.quantidadeItens}}</p>
+    <p><strong>Total: </strong>{{pedidoFinalizado()?.total}}</p>
+    <button type="button" routerLink="/produtos">Voltar para compras</button>
+   </section>
 }
 
 
-@if (carrinhoFacade.carrinhoVazio()) {
-    <p style="color: red;">Seu carrinho está vazio. Adicione um produto antes de finalizar a compra.</p>
-    <button mat-button type="button" routerLink="/produtos">Ver produtos</button>
-}@else if (!compraFinalizada()){
-    <section>
+@if (carrinhoFacade.carrinhoVazio() && !pedidoFinalizado()) {
+    <section class="carrinho-vazio">
+        <h3>Seu carrinho está vazio</h3>
+        <p>Adicione produtos antes de finalizar sua compra</p>
+        <button type="button" routerLink="/produtos">Ver produtos</button>
+    </section>
+    
+}@else if (!pedidoFinalizado()){
+    <section class="resumo-pedido">
         <h3>Resumo do pedido</h3>
-        <P><strong>Itens no Carrinho: </strong>{{carrinhoFacade.quantidadeCarrinho()}}</P>
-        <P><strong>Total: </strong>{{carrinhoFacade.totalCarrinho() | precoFormatado}}</P>
-        <button mat-button type="button" routerLink="/carrinho">Revisar Carrinho</button>
+        <p><strong>Itens do carrinho: </strong>{{carrinhoFacade.quantidadeCarrinho()}}</p>
+        <p><strong>Total: </strong>{{carrinhoFacade.totalCarrinho() | precoFormatado}}</p>
+        <button type="button" routerLink="/carrinho"> Revisar carrinho</button>
     </section>
 }
+<hr>
+
 <form [formGroup]="formulario">
     <p><input type="text" formControlName = "nome" placeholder = "Nome"></p>
     @if(formulario.get('nome')?.touched && formulario.get('nome')?.invalid){
