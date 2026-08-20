@@ -6,7 +6,7 @@
     <p><strong>Cliente: </strong>{{pedidoFinalizado()?.cliente}}</p>
     <p><strong>Quantidade: </strong>{{pedidoFinalizado()?.quantidadeItens}}</p>
     <p><strong>Total: </strong>{{pedidoFinalizado()?.total}}</p>
-    <button type="button" routerLink="/produtos">Voltar para compras</button>
+    <button mat-button type="button" routerLink="/produtos">Voltar para compras</button>
    </section>
 }
 
@@ -15,7 +15,7 @@
     <section class="carrinho-vazio">
         <h3>Seu carrinho está vazio</h3>
         <p>Adicione produtos antes de finalizar sua compra</p>
-        <button type="button" routerLink="/produtos">Ver produtos</button>
+        <button mat-button type="button" routerLink="/produtos">Ver produtos</button>
     </section>
     
 }@else if (!pedidoFinalizado()){
