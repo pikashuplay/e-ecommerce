@@ -1,0 +1,73 @@
+.pagina-checkout{
+    max-width: 700px;
+}
+
+.compra-finalizada{
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 16px;
+    margin: 16px 0;
+}
+
+.carrinho-vazio{
+    border: 1px solid #ffb2b2;
+    border-radius: 10px;
+    padding: 16px;
+    margin: 16px 0;
+    background-color: #fccccf;
+    text-align: center;
+}
+
+.carrinho-vazio h3{
+    color: red;
+    font-weight: bold;
+}
+
+.carrinho-vazio p {
+    color: red;
+
+}
+
+.carrinho-vazio button{
+    color: #fff;
+    background-color: #ff3232;
+}
+
+.resumo-pedido{
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 16px;
+    margin: 16px 0;
+    text-align: center;
+
+}
+.resumo-pedido h3{
+    font-size: 20px;
+    margin-top: 16px;
+    text-align: center;
+}
+
+.resumo-pedido{
+    font-size: 16px;
+    text-align: center;
+}
+
+.form{
+    max-width: 700px;
+    text-align: center;
+}
+
+input{
+    width: 100%;
+    border: 1px solid #c9c9c9;
+    border-radius: 25px;
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+small{
+    display: block;
+    color: red;
+    margin-bottom: 8px;
+}
