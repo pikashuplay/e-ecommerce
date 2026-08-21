@@ -10,23 +10,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CarrinhoFacade } from '../../../core/facades/carrinho.facade';
 import { ItemCarrinho } from '../../../core/models/item-carrinho';
+import { ProdutoLoja } from '../../../core/models/produto-loja';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-lista-produtos',
-  imports: [ PrecoFormatadoPipe, UpperCasePipe, MatButtonModule, Produto, MatCardModule,],
+  imports: [PrecoFormatadoPipe, UpperCasePipe, MatButtonModule, Produto, MatCardModule, RouterLink],
   templateUrl: './lista-produtos.html',
   styleUrl: './lista-produtos.css',
 })
 export class ListaProdutos {
 
-  //!remover a lista de produtos, dados carregados via API Fakestoreapi
-  produtos = signal <{ nome: string; preco: number}[]>([]);
-  //? criar estado de carregamento, 
-  // **true: requisição em andamento, exibir dados no templete
-  //! false: esconder indicador e exibir a lista de produtos
+  produtos = signal <ProdutoLoja[]>([]);
+
   carregando = signal(true);
 
-  //!criar o metodo para requisição dos produtos
   carregarProdutos(){
 
     this.carregando.set(true);
@@ -58,6 +56,8 @@ export class ListaProdutos {
   totalProdutos = computed(() => this.produtos().length);
   
   valorTotal  = computed(() => {return this.produtos().reduce((total, item) => total + item.preco,0)});
+
+  valorTotalFormatado = computed(() => this.valorTotal().toFixed(2));
   
   substituirprodutos (){
     this.produtos.set([
@@ -69,12 +69,7 @@ export class ListaProdutos {
     ]);
   }
   constructor(){
-      //? =============== método http (api) foi modificado (produtoService)
     this.carregarProdutos();
-    effect(() => {console.log('Lista de Produtos Alterado', this.produtos());
-     });
-     effect(() => {console.log('Valor total atualizado:', this.valorTotal());
-     });
      effect(() => {if (typeof document !== 'undefined') {
         document.title = `(${this.totalProdutos()}) Minha Loja`;
      }
