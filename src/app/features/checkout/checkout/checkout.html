@@ -1,34 +1,37 @@
-<h2>Checkout</h2>
-@if (pedidoFinalizado()) {
-   <section class="compra-finalizada">
-    <h3>COMPRA FINALIZADA COM SUCESSO. </h3>
-    <p><strong>Código: </strong>{{pedidoFinalizado()?.codigo}}</p>
-    <p><strong>Cliente: </strong>{{pedidoFinalizado()?.cliente}}</p>
-    <p><strong>Quantidade: </strong>{{pedidoFinalizado()?.quantidadeItens}}</p>
-    <p><strong>Total: </strong>{{pedidoFinalizado()?.total}}</p>
-    <button mat-button type="button" routerLink="/produtos">Voltar para compras</button>
-   </section>
-}
-
-
-@if (carrinhoFacade.carrinhoVazio() && !pedidoFinalizado()) {
-    <section class="carrinho-vazio">
-        <h3>Seu carrinho está vazio</h3>
-        <p>Adicione produtos antes de finalizar sua compra</p>
-        <button mat-button type="button" routerLink="/produtos">Ver produtos</button>
-    </section>
+<section class="pagina-checkout">
     
-}@else if (!pedidoFinalizado()){
-    <section class="resumo-pedido">
-        <h3>Resumo do pedido</h3>
-        <p><strong>Itens do carrinho: </strong>{{carrinhoFacade.quantidadeCarrinho()}}</p>
-        <p><strong>Total: </strong>{{carrinhoFacade.totalCarrinho() | precoFormatado}}</p>
-        <button type="button" routerLink="/carrinho"> Revisar carrinho</button>
-    </section>
-}
-<hr>
+    <h2>Checkout</h2>
+    @if (pedidoFinalizado()) {
+       <section class="compra-finalizada">
+        <h3>COMPRA FINALIZADA COM SUCESSO. </h3>
+        <p><strong>Código: </strong>{{pedidoFinalizado()?.codigo}}</p>
+        <p><strong>Cliente: </strong>{{pedidoFinalizado()?.cliente}}</p>
+        <p><strong>Quantidade: </strong>{{pedidoFinalizado()?.quantidadeItens}}</p>
+        <p><strong>Total: </strong>{{pedidoFinalizado()?.total}}</p>
+        <button mat-raised-button color="primary" type="button" routerLink="/produtos">Voltar para compras</button>
+       </section>
+    }
+    
+    
+    @if (carrinhoFacade.carrinhoVazio() && !pedidoFinalizado()) {
+        <section class="carrinho-vazio">
+            <h3>SEU CARRINHO ESTÁ VAZIO</h3>
+            <p>Adicione produtos antes de finalizar sua compra</p>
+            <button mat-button type="button" routerLink="/produtos">Ver produtos</button>
+        </section>
+        
+    }@else if (!pedidoFinalizado()){
+        <section class="resumo-pedido">
+            <h3>Resumo do pedido</h3>
+            <p><strong>Itens do carrinho: </strong>{{carrinhoFacade.quantidadeCarrinho()}}</p>
+            <p><strong>Total: </strong>{{carrinhoFacade.totalCarrinho() | precoFormatado}}</p>
+            <button mat-raised-button color="primary" type="button" routerLink="/carrinho"> Revisar carrinho</button>
+        </section>
 
-<form [formGroup]="formulario">
+        <hr>
+
+<form [formGroup]="formulario" class="form">
+    <h3> Finalizar compra</h3>
     <p><input type="text" formControlName = "nome" placeholder = "Nome"></p>
     @if(formulario.get('nome')?.touched && formulario.get('nome')?.invalid){
         @if (formulario.get('nome')?.errors?.['required']){
@@ -47,16 +50,16 @@
     @if (formulario.get('email')?.touched && formulario.get('email')?.invalid) {
         @if (formulario.get('email')?.errors?.['required']) {
             <br>
-            <small style="color: red;">E-mail é Obrigatório</small>
+            <small>E-mail é Obrigatório</small>
         }
         @if (formulario.get('nome')?.errors?.['minlegenth']) {
             <br>
-            <small style="color: red;"> E-mail Invalido sem @</small>
+            <small> E-mail Invalido sem @</small>
     }
 }
 @if (formulario.get('email')?.errors?.['email']) {
     <br>
-    <small style="color: red;">E-mail invalido</small>
+    <small>E-mail invalido</small>
 }
 
     <p><input type="text" formControlName = "endereco" placeholder = "Endereço"></p>
@@ -72,6 +75,9 @@
         <small style="color: red;">Nome deve ter no mínimo 5 letras</small>
     }
 
-
-    <button mat-button type="button" (click)="finalizar()" [disabled]="formulario.invalid">Finalizar compra</button>
+    <button mat-raised-button color="primary" type="button" (click)="finalizar()" [disabled]="formulario.invalid">Finalizar compra</button>
 </form>
+    }
+
+</section>
+
