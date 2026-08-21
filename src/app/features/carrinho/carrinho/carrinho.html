@@ -1,4 +1,4 @@
-<section class="container-carrinho">
+<section class="pagina-carrinho">
 
     <h2>Carrinho</h2>
     @if (carrinhoFacade.carrinhoVazio()) {
@@ -10,8 +10,8 @@
             @for (item of carrinhoFacade.itensCarrinho(); track $index) {
                 <article class="item-carrinho">
                     <div>
-                        <p><strong>{{item.nome}}</strong></p>
-                        <p>{{item.preco | precoFormatado}}</p>
+                        <p class="nome-produto"><strong>{{item.nome}}</strong></p>
+                        <p class="preco-produto">{{item.preco | precoFormatado}}</p>
                         
                         <button  mat-stroked-button color="warn" 
                         type="button" 
@@ -27,8 +27,8 @@
         <section class="acoes-carrinho">
             <button mat-button type="button" (click)="limparCarrinho()"> Limpar carrinho</button>
             <button mat-button type="button" routerLink="/produtos"> Continuar compra</button>
-            <button class="acao-carrinho-confirmar"  mat-button type="button" routerLink="/checkout"> Finalizar compra</button>
-            <button class="acao-carrinho-cancelar"  mat-button type="button" (click)="cancelarCompra()"> Cancelar compra</button>
+            <button class="carrinho-confirmar"  mat-button type="button" routerLink="/checkout"> Finalizar compra</button>
+            <button class="carrinho-cancelar"  mat-button type="button" (click)="cancelarCompra()"> Cancelar compra</button>
         </section>
     }
 
