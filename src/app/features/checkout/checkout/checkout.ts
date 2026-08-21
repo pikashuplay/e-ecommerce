@@ -14,7 +14,7 @@ import { AuthFacade } from '../../../core/facades/auth.facade';
 import { PrecoFormatadoPipe } from '../../../shared/pipes/preco-formatado-pipe';
 import { MatAnchor } from "@angular/material/button";
 import { ItemCarrinho } from '../../../core/models/item-carrinho';
-
+import { MatButtonModule } from '@angular/material/button';
 type PedidoFinalizado = {
   codigo: number;
   cliente: string;
@@ -25,7 +25,7 @@ type PedidoFinalizado = {
 
 @Component({
   selector: 'app-checkout',
-  imports: [ReactiveFormsModule, RouterLink, PrecoFormatadoPipe, MatAnchor],
+  imports: [ReactiveFormsModule, RouterLink, PrecoFormatadoPipe, MatAnchor, MatButtonModule],
   templateUrl: './checkout.html',
   styleUrl: './checkout.css',
 })
