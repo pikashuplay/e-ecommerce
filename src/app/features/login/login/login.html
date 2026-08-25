@@ -1,20 +1,29 @@
-<h2>Login</h2>
-<p>Informe seu dados para acessar a loja</p>
-@if (errologin()) {
-    <p style="color: red;">Não foi Possivel realizar o login!</p>
-}
-<form [formGroup]="formulario">
-    <label>Email</label>
-    <p><input type="email" formControlName="email" placeholder="E-mail"></p>
-    @if (formulario.get('email')?.touched && formulario.get('email')?.invalid) {
-        @if (formulario.get('email')?.errors?.['required']) {
-            <small style="color: red;">E-mail é Obrigatório</small>
-        }
-        @if (formulario.get('email')?.errors?.['email']){
-            <small style="color: red;">E-mail invalido</small>
-        }
+<section class="pagina-login">
+    <section class="login-finalizado" >
+        <h2>Login</h2>
+        <p>Informe seu dados para acessar a loja</p>
+
+    </section>
+    @if (errologin()) {
+        <p style="color: red;">Não foi Possivel realizar o login!</p>
     }
-    <label>Senha</label>
-    <p><input type="passaword" formControlName="senha" placeholder="Senha"></p>
-    <P><button type="button" (click)="entrar()" [disabled]="formulario.invalid">Entrar</button></P>
-</form>
+    <form [formGroup]="formulario">
+        <label>Email</label>
+        <p><input type="email" formControlName="email" placeholder="E-mail"></p>
+        @if (formulario.get('email')?.touched && formulario.get('email')?.invalid) {
+            @if (formulario.get('email')?.errors?.['required']) {
+                <small style="color: red;">E-mail é Obrigatório</small>
+            }
+            <br>
+            @if (formulario.get('senha')?.errors?.['minLength']){
+                <small style="color: red;">senha Invalida</small>
+            }
+        }
+        <label>Senha</label>
+        <p><input type="passaword" formControlName="senha" placeholder="Senha"></p>
+        <section class="button-login">
+        <P><button mat-button type="button" (click)="entrar()" [disabled]="formulario.invalid">Entrar</button></P>
+        </section>
+    </form>
+
+</section>
