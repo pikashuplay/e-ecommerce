@@ -1,0 +1,31 @@
+<section class="pagina-favoritos">
+  <header class="cabecalho-favoritos">
+    <h2>Meus Favoritos</h2>
+    <p>Adicione produtos à sua lista de favoritos.</p>
+  </header>
+
+  <!-- <section class="form-favoritos">
+    <input
+      type="text"
+      [(ngModel)]="novoProduto"
+      placeholder="Nome do produto"
+      (keyup.enter)="adicionarProduto()"
+    /> -->
+    <!-- <button type="button" (click)="adicionarProduto()">Adicionar</button>
+  </section> -->
+
+  <hr />
+
+  @if (favoritosFacade.listaFavoritos().length === 0) {
+    <p class="texto-neutro">Nenhum produto favorito adicionado</p>
+  } @else {
+    <ul class="lista-favoritos">
+      @for (item of favoritosFacade.listaFavoritos(); track item) {
+        <li class="item-favorito">
+          <span>{{ item }}</span>
+          <button mat-button type="button" (click)="removerProduto(item)">Remover</button>
+        </li>
+      }
+    </ul>
+  }
+</section>
