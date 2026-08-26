@@ -1,23 +1,29 @@
 <mat-card class="produto">
-    <mat-card-header>
-    
-            <mat-card-title>{{ nome | uppercase}}</mat-card-title>
+<mat-card-header>
 
-    </mat-card-header>
-    <mat-card-content>
-        <P>{{ preco | precoFormatado}}</P>
-    </mat-card-content>
-    <mat-card-actions>
-        
-        <!-- <button mat-stroked-button color="accent" (click)="selecionarProduto()">
-            Selecionar {{ nome }}
-        </button>  -->
-        <button mat-raised-button color="primary" (click)="adicionarAoCarrinho()">
-            Adicionar ao carrinho
-        </button>
-    </mat-card-actions>
+<mat-card-title>
+    {{ nome | uppercase}}
+</mat-card-title>
 
+</mat-card-header>
 
+<mat-card-content>
+<p>{{ preco | precoFormatado}}</p>
+</mat-card-content>
+
+<mat-card-actions>
+
+<button mat-raised-button color="primary" (click)="adicionarAoCarrinho()">
+    Adicionar ao carrinho
+</button>
+
+<button mat-button color="primary" routerLink="/favoritos" (click)="alternarFavorito()"
+>
+🤍
+</button>
+
+</mat-card-actions>
+ 
 </mat-card>
 <!-- <button (click)="adicionarAoCarrinho()">
     Adicionar ao Carrinho
