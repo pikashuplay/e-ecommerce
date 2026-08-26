@@ -44,6 +44,14 @@ export const routes: Routes = [
             import ('./features/login/login/login').then((m) => m.Login),
     },
     {
+        path: 'favoritos',
+        canActivate: [authGuard],
+        loadComponent: () =>
+            import('./features/produtos/favoritos/favoritos').then((m) => m.Favoritos),
+            
+    },
+
+    {
         path:'**',
         redirectTo: '',
     },
