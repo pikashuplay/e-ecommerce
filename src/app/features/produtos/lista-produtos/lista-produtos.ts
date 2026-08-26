@@ -12,6 +12,7 @@ import { CarrinhoFacade } from '../../../core/facades/carrinho.facade';
 import { ItemCarrinho } from '../../../core/models/item-carrinho';
 import { ProdutoLoja } from '../../../core/models/produto-loja';
 import { RouterLink } from "@angular/router";
+import { Favoritos } from '../favoritos/favoritos';
 
 @Component({
   selector: 'app-lista-produtos',
