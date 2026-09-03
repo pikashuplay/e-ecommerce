@@ -1,31 +1,25 @@
-<section class="pagina-favoritos">
-  <header class="cabecalho-favoritos">
-    <h2>Meus Favoritos</h2>
-    <p>Adicione produtos à sua lista de favoritos.</p>
-  </header>
-
-  <!-- <section class="form-favoritos">
-    <input
-      type="text"
-      [(ngModel)]="novoProduto"
-      placeholder="Nome do produto"
-      (keyup.enter)="adicionarProduto()"
-    /> -->
-    <!-- <button type="button" (click)="adicionarProduto()">Adicionar</button>
-  </section> -->
-
-  <hr />
-
-  @if (favoritosFacade.listaFavoritos().length === 0) {
-    <p class="texto-neutro">Nenhum produto favorito adicionado</p>
-  } @else {
-    <ul class="lista-favoritos">
-      @for (item of favoritosFacade.listaFavoritos(); track item) {
-        <li class="item-favorito">
-          <span>{{ item }}</span>
-          <button mat-button type="button" (click)="removerProduto(item)">Remover</button>
-        </li>
+<section class="pagina-carrinho">
+  <h2>Favoritos</h2>
+  @if (favoritos().length === 0) {
+    <p>Nenhum Produto adicionado aos Favoritos</p>
+    <button mat-raised-button color="primary" type="button" routerLink="/produtos">Voltar para Produtos</button>
+  }@else{
+    <section class="lista-carrinho">
+      @for (item of favoritos(); track item) {
+        <article class="item-carrinho">
+          <div>
+            <p class="nome-produto">
+              <strong> {{ item }}</strong>
+            </p>
+            <button mat-stroked-button color="warn" type="button" (click)="removerItem(item)"> Remover </button>
+          </div>
+        </article>
       }
-    </ul>
+    </section>
+    <section class="resumo-carrinho">
+      <h3>Resumo</h3>
+      <p>Total de Produtos:</p>
+      <strong>{{favoritos().length}}</strong>
+    </section>
   }
 </section>
