@@ -1,24 +1,24 @@
-import { Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { FavoritosFacade } from '../../../core/facades/favoritos.facade';
-import { MatAnchor } from "@angular/material/button";
+import { CarrinhoFacade } from "../../../core/facades/carrinho.facade";
+import { Router, RouterLink } from "@angular/router";
+import { AuthFacade } from "../../../core/facades/auth.facade";
+import { PrecoFormatadoPipe } from "../../../shared/pipes/preco-formatado-pipe";
+import { Component, inject, signal } from "@angular/core";
+import { MatButtonModule } from "@angular/material/button";
+import { FavoritoService } from "../../../core/services/favorito.service";
 
 @Component({
   selector: 'app-favoritos',
-  imports: [FormsModule, MatAnchor],
+  imports: [RouterLink, MatButtonModule, PrecoFormatadoPipe],
   templateUrl: './favoritos.html',
   styleUrl: './favoritos.css',
 })
 export class Favoritos {
-  favoritosFacade = inject(FavoritosFacade);
-  novoProduto = '';
-
-  adicionarProduto(): void {
-    this.favoritosFacade.adicionarFavorito(this.novoProduto);
-    this.novoProduto = '';
+  constructor(
+    private favoritoService: FavoritoService){}
+    get favoritos(){
+      return this.favoritoService.favoritos;
+    }
+    removerItem(produto:string){
+      this.favoritoService.removerFavorito(produto);
+    }
   }
-
-  removerProduto(produto: string): void {
-    this.favoritosFacade.removerFavorito(produto);
-  }
-}
