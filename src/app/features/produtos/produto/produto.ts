@@ -5,7 +5,7 @@ import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardContent, MatCardHeader, MatCardActions, MatCardTitle} from "@angular/material/card";
 import { ItemCarrinho } from '../../../core/models/item-carrinho';
 import { RouterLink } from "@angular/router";
-import { FavoritosFacade } from '../../../core/facades/favoritos.facade';
+import { FavoritoService } from '../../../core/services/favorito.service';
 @Component({
   selector: 'app-produto',
   imports: [UpperCasePipe, PrecoFormatadoPipe, MatButton, MatCard, MatCardTitle, MatCardContent, MatCardHeader, MatCardActions, RouterLink],
@@ -13,15 +13,17 @@ import { FavoritosFacade } from '../../../core/facades/favoritos.facade';
   styleUrl: './produto.css',
 })
 export class Produto {
-  favoritosfacade= inject(FavoritosFacade)
 
   //entrada de dados de lista-produtos.ts
   @Input() nome: string = '';
   @Input() preco: number = 0;
   
+  
+  constructor(
+    private favoritoService: FavoritoService
+  ){}
   //saida de dados de produtos selecionados para lista-produtos
   @Output() produtoSelecionado = new EventEmitter<string>();
-
   selecionarProduto() {
     this.produtoSelecionado.emit(this.nome);
   }
@@ -31,10 +33,7 @@ export class Produto {
     this.produtoAdicionado.emit(({nome: this.nome, preco: this.preco}))
   }
 
-  @Output() favoritoAdicionado = new EventEmitter<ItemCarrinho>();
-  
-   alternarFavorito() {
-    this.favoritosfacade.adicionarFavorito(this.nome);
+  adicionarfavoritos(){
+    this.favoritoService.adicionarFavorito(this.nome);
   }
-
 }
